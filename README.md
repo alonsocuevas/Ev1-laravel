@@ -1,3 +1,259 @@
+# ☕ Coffe Time - Sistema de Gestión de Cafetería
+
+![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.1+-blue.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.2-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+## 📋 Descripción del Proyecto
+
+**Coffe Time** es una aplicación web desarrollada en Laravel que simula el sistema de gestión de una cafetería chilena. La aplicación permite a los usuarios registrarse, iniciar sesión y explorar el catálogo de productos organizados en tres categorías principales: café, pastelería y sándwiches.
+
+### 🎯 Características Principales
+
+- **Sistema de Autenticación**: Registro e inicio de sesión de usuarios
+- **Catálogo de Productos**: Visualización de productos por categorías
+- **Interfaz Responsiva**: Diseño adaptativo con Bootstrap 5
+- **Gestión de Usuarios**: Sistema completo de usuarios con validaciones
+- **Página Institucional**: Sección "Conócenos" con información de la empresa
+
+## 🛠️ Stack Tecnológico
+
+### Backend
+- **Laravel 10.x** - Framework PHP
+- **PHP 8.1+** - Lenguaje de programación
+- **MySQL** - Base de datos
+- **Laravel Sanctum** - Autenticación API
+
+### Frontend
+- **Blade Templates** - Motor de plantillas de Laravel
+- **Bootstrap 5.2** - Framework CSS
+- **jQuery 3.6** - Biblioteca JavaScript
+- **Font Awesome** - Iconografía
+- **SweetAlert2** - Alertas y notificaciones
+- **Owl Carousel** - Carrusel de productos
+- **Typed.js** - Efectos de escritura
+
+### Herramientas de Desarrollo
+- **Vite** - Build tool y bundler
+- **Composer** - Gestor de dependencias PHP
+- **NPM** - Gestor de paquetes Node.js
+- **PHPUnit** - Framework de testing
+
+## 📁 Estructura del Proyecto
+
+```
+Ev1-laravel/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── AuthController.php      # Controlador de autenticación
+│   │   └── HomeController.php      # Controlador principal
+│   └── Models/
+│       ├── User.php               # Modelo de usuario
+│       └── Product.php            # Modelo de producto
+├── database/
+│   ├── migrations/                # Migraciones de base de datos
+│   └── seeders/                   # Seeders para datos de prueba
+├── public/
+│   ├── css/                       # Estilos CSS
+│   ├── js/                        # Scripts JavaScript
+│   └── img/                       # Imágenes del proyecto
+├── resources/
+│   └── views/
+│       ├── auth/                  # Vistas de autenticación
+│       ├── admin/                 # Vistas principales
+│       └── layouts/               # Layouts base
+└── routes/
+    └── web.php                    # Rutas web
+```
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+
+- **XAMPP** (Apache + MySQL + PHP 8.1+)
+- **Composer**
+- **Git**
+
+### Pasos de Instalación
+
+1. **Instalar XAMPP**
+   ```bash
+   # Descargar desde: https://www.apachefriends.org/es/index.html
+   # Verificar configuración de php.ini
+   ```
+
+2. **Instalar Composer**
+   ```bash
+   # Descargar desde: https://getcomposer.org/download/
+   ```
+
+3. **Configurar Base de Datos**
+   ```bash
+   # Iniciar Apache y MySQL en XAMPP
+   # Crear base de datos 'cafeteria' en phpMyAdmin
+   ```
+
+4. **Clonar el Repositorio**
+   ```bash
+   git clone --single-branch --branch master https://github.com/jeremyormeno30/Evaluacion_1.git
+   cd Evaluacion_1
+   ```
+
+5. **Instalar Dependencias**
+   ```bash
+   composer install
+   npm install
+   ```
+
+6. **Configurar Variables de Entorno**
+   ```bash
+   # Copiar .env.example a .env
+   cp .env.example .env
+   
+   # Configurar base de datos en .env
+   DB_DATABASE=cafeteria
+   
+   # Generar clave de aplicación
+   php artisan key:generate
+   ```
+
+7. **Ejecutar Migraciones**
+   ```bash
+   php artisan migrate
+   ```
+
+8. **Importar Datos de Productos**
+   ```bash
+   # Importar script_productos.txt desde Script_Products/ en phpMyAdmin
+   ```
+
+9. **Iniciar el Servidor**
+   ```bash
+   php artisan serve
+   # Acceder a: http://localhost:8000/login
+   ```
+
+## 🎮 Uso de la Aplicación
+
+### Funcionalidades Disponibles
+
+1. **Registro de Usuario**
+   - Acceso: `/register`
+   - Campos: Nombre, Apellido, Email, Contraseña
+   - Validaciones: Email único, contraseña mínima 6 caracteres
+
+2. **Inicio de Sesión**
+   - Acceso: `/login`
+   - Opción "Recordarme"
+   - Redirección automática al dashboard
+
+3. **Dashboard Principal**
+   - Acceso: `/home` (requiere autenticación)
+   - Visualización de productos por categorías
+   - Navegación entre secciones
+
+4. **Catálogo de Productos**
+   - **Café**: 5 variedades (Mocca, Latte, Espresso, Americano, Irish)
+   - **Pastelería**: 5 opciones (Tres leches, Selva negra, Moka especial, etc.)
+   - **Sándwiches**: 5 tipos (Omelette, Español, Americano, De Pechuga, De Atún)
+
+5. **Página Institucional**
+   - Acceso: `/conocenos`
+   - Información de la empresa, misión, visión y valores
+
+## 🗄️ Base de Datos
+
+### Tablas Principales
+
+#### `users`
+- `id` (Primary Key)
+- `name` (VARCHAR)
+- `surname` (VARCHAR)
+- `email` (VARCHAR, UNIQUE)
+- `password` (VARCHAR, HASHED)
+- `timestamps`
+
+#### `products`
+- `id` (Primary Key)
+- `name` (VARCHAR)
+- `description` (TEXT)
+- `price` (VARCHAR)
+- `category` (VARCHAR)
+- `img` (VARCHAR)
+- `timestamps`
+
+## 🧪 Testing
+
+El proyecto incluye configuración básica de PHPUnit:
+
+```bash
+# Ejecutar tests
+php artisan test
+
+# Test de ejemplo incluido
+# Verifica que la aplicación retorne respuesta exitosa
+```
+
+## 📱 Características de la Interfaz
+
+- **Diseño Responsivo**: Adaptable a dispositivos móviles y desktop
+- **Navegación Intuitiva**: Menú de navegación con scroll suave
+- **Modales Interactivos**: Descripción detallada de productos
+- **Efectos Visuales**: Animaciones con Typed.js y transiciones CSS
+- **Carrusel de Productos**: Presentación atractiva de items
+- **Tema Personalizado**: Colores y estilos específicos de la marca
+
+## 🔧 Configuraciones Adicionales
+
+### Middleware Implementado
+- **Auth**: Protección de rutas autenticadas
+- **CSRF**: Protección contra ataques CSRF
+- **TrimStrings**: Limpieza automática de strings
+
+### Validaciones
+- **Registro**: Email único, contraseña confirmada
+- **Login**: Credenciales requeridas
+- **Formularios**: Validación de campos obligatorios
+
+## 🚀 Mejoras Sugeridas
+
+### Funcionalidades Futuras
+1. **Sistema de Pedidos**: Carrito de compras y procesamiento de órdenes
+2. **Panel de Administración**: CRUD completo para productos y usuarios
+3. **Sistema de Reseñas**: Comentarios y calificaciones de productos
+4. **Notificaciones**: Sistema de alertas y notificaciones push
+5. **API REST**: Endpoints para aplicación móvil
+6. **Pagos Online**: Integración con pasarelas de pago
+7. **Gestión de Inventario**: Control de stock y disponibilidad
+8. **Reportes**: Dashboard con métricas y estadísticas
+
+### Mejoras Técnicas
+1. **Optimización de Imágenes**: Compresión y lazy loading
+2. **Caché**: Implementación de Redis o Memcached
+3. **Testing**: Cobertura completa de tests unitarios y de integración
+4. **Documentación API**: Swagger/OpenAPI documentation
+5. **CI/CD**: Pipeline de integración continua
+6. **Docker**: Containerización de la aplicación
+7. **Logging**: Sistema robusto de logs y monitoreo
+8. **Seguridad**: Implementación de rate limiting y validaciones adicionales
+
+## 👥 Contribuidores
+
+- **Alonso** - Desarrollo y diseño
+- **Jeremy** - Desarrollo y funcionalidades
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 📞 Contacto
+
+Para consultas o colaboraciones, contactar a los desarrolladores del proyecto.
+
+---
+
+**Coffe Time** - *100% Artesanal • 100% Chilena • 100% Olor a Café* ☕---
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
